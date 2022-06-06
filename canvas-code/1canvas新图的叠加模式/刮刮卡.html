@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#ggk{
+				width: 600px;
+				height: 200px;
+				position: relative;
+			}
+			#ggk .jp{
+				width: 600px;
+				height: 200px;
+				text-align: center;
+				color: deeppink;
+				font-size: 50px;
+				line-height: 200px;
+			}
+			#ggk #canvas{
+				width: 600px;
+				height: 200px;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="ggk">
+			<div class="jp">谢谢惠顾</div>
+			<canvas id="canvas" width="600" height="200"></canvas>
+		</div>
+		<script type="text/javascript">
+			var ggkDom = document.querySelector("#ggk")
+			var jpDom = document.querySelector(".jp")
+			var canvas = document.querySelector("#canvas")
+			var ctx = canvas.getContext('2d');
+
+			ctx.fillStyle= "darkgray"
+			ctx.fillRect(0,0,600,200)
+			ctx.font = "20px 微软雅黑"
+			ctx.fillStyle = '#fff'
+			ctx.fillText("刮刮卡",260,100)
+			var isDraw = false;
+			//设置isDraw = true,即为允许绘制
+			canvas.onmousedown = function(){
+				isDraw = true
+				console.log(isDraw)
+			}
+
+			//移动的时候绘制圆形,将源图像内的目标的内容给清除掉
+			canvas.onmousemove = function(e){
+				//console.log(e)
+				if(isDraw){
+					var x = e.pageX - ggkDom.offsetLeft;
+					var y = e.pageY - ggkDom.offsetTop
+					ctx.globalCompositeOperation = "destination-out"
+					ctx.arc(x,y,20,0,2*Math.PI)
+					ctx.fill()
+
+				}
+
+			}
+
+			canvas.onmouseup = function(){
+				isDraw = false
+				console.log(isDraw)
+			}
+			jpDom.onselectstart = function(){
+				return false
+			}
+
+			var arr = [{content:"一等奖：IphoneXs",p:0.1},{content:"二等奖：娃娃1个",p:0.2},{content:"三等奖：Ipad",p:0.3}]
+			var randomNum = Math.random()
+			if(randomNum<arr[0].p){
+				jpDom.innerHTML = arr[0].content
+			}else if(randomNum<arr[1].p+arr[0].p){
+				jpDom.innerHTML = arr[1].content
+			}else if(randomNum<arr[2].p+arr[1].p+arr[0].p){
+				jpDom.innerHTML = arr[2].content
+			}
+		</script>
+	</body>
+</html>

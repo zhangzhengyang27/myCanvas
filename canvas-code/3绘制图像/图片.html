@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+<!--width="200" height="150" 将200 150的图片 放到到 800 600的大小		-->
+<canvas id="canvas" width="200" height="150" style="width:800px;height: 600px;"></canvas>
+<script type="text/javascript">
+    var canvas = document.querySelector("#canvas")
+
+    var ctx = canvas.getContext('2d')
+
+
+    var img = new Image()
+    img.src = "img/cat.jpg"
+    img.onload = function () {
+        ctx.drawImage(img, 0, 0)
+    }
+</script>
+</body>
+</html>

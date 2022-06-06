@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="600"></canvas>
+
+		<script type="text/javascript">
+			var canvas = document.querySelector("#canvas")
+			var cxt = canvas.getContext('2d')
+
+			function renderClock(){
+				cxt.clearRect(0,0,800,600)
+				// 保留最原始的状态
+				cxt.save()
+				// 将坐标移动到画布的中央
+				cxt.translate(400,300)
+				cxt.rotate(-2*Math.PI/4)
+
+				cxt.save()
+				//绘制表盘
+				cxt.beginPath()
+				cxt.arc(0,0,200,0,2*Math.PI)
+				cxt.strokeStyle = "darkgrey"
+				cxt.lineWidth = 10
+				cxt.stroke()
+				cxt.closePath()
+
+				//绘制分钟刻度
+				for(var j=0;j<60;j++){
+					// 画笔旋转的角度
+					cxt.rotate(Math.PI/30)
+					cxt.beginPath()
+					// 画笔的起点
+					cxt.moveTo(180,0)
+					// 画笔的结束
+					cxt.lineTo(190,0)
+					cxt.lineWidth = 2;
+					cxt.strokeStyle = "orangered"
+					cxt.stroke()
+					cxt.closePath()
+				}
+				cxt.restore()
+				cxt.save()
+				//绘制时钟刻度
+				for(var i = 0;i<12;i++){
+					cxt.rotate(Math.PI/6)
+					cxt.beginPath()
+					cxt.moveTo(180,0)
+					cxt.lineTo(200,0)
+					cxt.lineWidth = 10;
+					cxt.strokeStyle = "darkgrey"
+					cxt.stroke()
+					cxt.closePath()
+				}
+				cxt.restore()
+				cxt.save()
+
+
+				var time = new Date()
+
+				var hour =  time.getHours()
+				var min = time.getMinutes()
+				var sec = time.getSeconds()
+				//如果时间是大于12的话,就直接减去12
+				hour = hour>12?hour-12:hour
+				console.log(hour+":"+min+":"+sec)
+
+
+				//绘制秒针
+				cxt.beginPath()
+				//根据秒针的时间进行旋转
+				cxt.rotate(2*Math.PI/60*sec)
+				cxt.moveTo(-30,0)
+				cxt.lineTo(170,0)
+				cxt.lineWidth = 2;
+				cxt.strokeStyle = "red"
+				cxt.stroke()
+				cxt.closePath()
+
+				cxt.restore()
+				cxt.save()
+
+
+				//绘制分针
+				cxt.beginPath()
+				//根据分针的时间进行旋转
+				cxt.rotate(2*Math.PI/60*min+2*Math.PI/3600*sec)
+				cxt.moveTo(-20,0)
+				cxt.lineTo(150,0)
+				cxt.lineWidth = 4;
+				cxt.strokeStyle = "darkblue"
+				cxt.stroke()
+				cxt.closePath()
+
+				cxt.restore()
+				cxt.save()
+
+				//绘制时针
+				cxt.beginPath()
+				//根据时针的时间进行旋转
+				cxt.rotate(2*Math.PI/12*hour+2*Math.PI/60/12*min + 2*Math.PI/12/60/60*sec)
+				cxt.moveTo(-20,0)
+				cxt.lineTo(140,0)
+				cxt.lineWidth = 6;
+				cxt.strokeStyle = "darkslategray"
+				cxt.stroke()
+				cxt.closePath()
+
+				cxt.beginPath()
+				cxt.arc(0,0,10,0,2*Math.PI)
+				cxt.fillStyle  = "deepskyblue";
+				cxt.fill()
+				cxt.closePath()
+
+				cxt.restore()
+				cxt.restore()
+			}
+
+			setInterval(function(){
+				renderClock()
+			},1000)
+
+		</script>
+	</body>
+</html>

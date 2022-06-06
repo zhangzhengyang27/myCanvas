@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+<canvas id="canvas" width="600" height="600"></canvas>
+<script type="text/javascript">
+    var canvas = document.querySelector("#canvas")
+    var ctx = canvas.getContext('2d')
+
+    //绘制图像
+    //ctx.drawImage(图片对象，x位置,y位置)
+    //ctx.drawImage(图片对象，x位置,y位置，宽度，高度)
+    //ctx.drawImage(图片对象，图像裁剪的位置x，图像裁剪y的位置，裁剪的宽度，裁剪的高度，x位置,y位置，宽度，高度)
+    var img = new Image()
+    img.src = "img/cat.jfif"
+
+    //图片载入数据后在绘制内容
+    img.onload = function () {
+        ctx.drawImage(img, 50, 50)
+        console.log(img)
+    }
+
+    var img2 = new Image()
+    img2.src = "img/mnist_images.png"
+    img2.onload = function () {
+        // 50,50,200,150  x位置,y位置，宽度，高度
+        ctx.drawImage(img2, 150, 100, 550, 350, 50, 50, 200, 150)
+        // 制作水印
+        ctx.fillText("老陈打码", 550, 480)
+    }
+
+</script>
+</body>
+</html>

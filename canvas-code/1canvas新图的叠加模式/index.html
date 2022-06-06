@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="600"></canvas>
+		<script type="text/javascript">
+			var canvas = document.querySelector("#canvas")
+			var ctx = canvas.getContext('2d')
+			//第一个红色矩形为目标图像
+			ctx.fillStyle = "hotpink"
+			ctx.fillRect(100,100,200,200)
+
+			ctx.globalCompositeOperation="xor"
+			console.log(ctx)
+			/*
+			 如何将一个源(新的)图像绘制到目标(已有的)的图像上
+			 默认值为source-over，源图像叠加在目标图像上
+			 source-atop，在*目标图像*顶部显示*源图像*。*源图像*位于*目标图像*之外的部分是不可见的。
+			 source-in,在*目标图像*中显示*源图像*。只有*目标图像*之内的*源图像*部分会显示，*目标图像*是透明的。
+			 source-out,在*目标图像*之外显示*源图像*。只有*目标图像*之外的*源图像*部分会显示，*目标图像*是透明的
+			 destination-over,在*源图像*上显示*目标图像*。
+			 destination-atop,在*源图像*顶部显示*目标图像*。*目标图像*位于*源图像*之外的部分是不可见的。
+			 destination-in,在*源图像*中显示*目标图像*。只有*源图像*之内的*目标图像*部分会被显示，*源图像*是透明的。
+			 destination-out,在*源图像*之外显示*目标图像*。只有*源图像*之外的*目标图像*部分会被显示，*源图像*是透明的。
+			 lighter,显示*源图像* + *目标图像*
+			 copy,显示*源图像*。忽略*目标图像*。
+			 xor等同于lighter,使用异或操作对*源图像*与*目标图像*进行组合。
+			 */
+
+
+			//第二个蓝色矩形为源图像
+			ctx.fillStyle = "deepskyblue"
+			ctx.fillRect(200,200,200,200)
+		</script>
+	</body>
+</html>

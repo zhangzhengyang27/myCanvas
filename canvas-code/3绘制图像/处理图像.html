@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="shortcut icon" href="img/bitbug_favicon.ico"/>
+</head>
+<body>
+<!-- 集合了65000张手写的数字图片 宽度784 高度65000  784 = 28*28 -->
+<!-- 总共有65000行，一行代表一个图片，宽是784个像素，一个像素有四位数表示 -->
+<!-- 显示数字图片 -->
+<canvas id="c2" width="100" height="65000" style="width: 300px;height: 65000px;"></canvas>
+<!-- 显示所有内容的图片 -->
+<canvas id="c1" width="784" height="65000"></canvas>
+
+<script type="text/javascript">
+    var c1 = document.querySelector("#c1")
+    var c2 = document.querySelector("#c2")
+    var c1Cxt = c1.getContext('2d')
+    var c2Cxt = c2.getContext('2d')
+    var img = new Image()
+    img.src = "img/mnist_images.png";
+
+    /*
+    * c1Cxt.getImageData(0,70,10,10)
+    * 数组里面会有400（10*10）条数据，4个位一组代表一个颜色值rgba
+    */
+    img.onload = function () {
+        c1Cxt.drawImage(img, 0, 0)
+
+        for (var j = 0; j < 65000; j++) {
+            var imgData = c1Cxt.getImageData(0, j, 784, 1)
+
+            var imgData2 = c2Cxt.createImageData(28, 28)
+
+
+            for (var i = 0; i < 784 * 4; i++) {
+                imgData2.data[i] = imgData.data[i]
+            }
+            console.log(imgData2)
+            console.log(imgData)
+            c2Cxt.putImageData(imgData2, 0, j * 28, 0, 0, 28, 28)
+        }
+
+    }
+</script>
+
+
+</body>
+</html>

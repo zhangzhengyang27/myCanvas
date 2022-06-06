@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+</head>
+<body>
+<!--
+ canvas三要素：
+ id:作为唯一的标识
+ width:画布内容宽度的像素大小（与style的宽度和高度是有区别）
+ height:画布内容高度的像素大小
+
+ cavas仅仅只是1个画布标签，要绘制内容，必须用js绘制
+ -->
+<canvas id="canvas1" width="600" height="600">
+    这里的内容，正常的画布是不现实的，你的浏览器不支持canvas
+</canvas>
+
+
+<script type="text/javascript">
+
+    // 1找到画布对象
+    var canvas1 = document.querySelector("#canvas1")
+    console.log([canvas1])
+    // 2上下文对象(画笔)
+    var ctx = canvas1.getContext("2d")
+    console.log(ctx)
+
+    // 3绘制路径
+    ctx.rect(50, 50, 300, 300)
+
+    // 4填充
+    ctx.fillStyle = "aqua";
+    ctx.fill()
+
+    // 5描边,渲染路径
+    ctx.lineWidth = 20
+    ctx.strokeStyle = "salmon"
+    ctx.stroke()
+
+
+</script>
+
+</body>
+</html>

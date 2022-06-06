@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="600"></canvas>
+
+		<script type="text/javascript">
+			var canvas = document.querySelector("#canvas")
+			var cxt = canvas.getContext('2d')
+
+			cxt.fillStyle = "hotpink"
+			cxt.fillRect(0,0,100,100)
+			//保留环境的状态(画笔的状态)
+			cxt.save()
+
+			cxt.scale(2,4)
+			cxt.fillStyle = "deepskyblue"
+			cxt.fillRect(100,0,300,100)
+			cxt.save()
+
+
+			//恢复之前保留的画笔状态
+			cxt.restore()
+			cxt.restore()
+			//cxt.fillStyle = "hotpink"
+			cxt.fillRect(0,150,100,100)
+
+		</script>
+	</body>
+</html>
