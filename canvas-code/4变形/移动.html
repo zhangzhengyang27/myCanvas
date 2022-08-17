@@ -5,24 +5,21 @@
 		<title></title>
 	</head>
 	<body>
-		<canvas id="canvas" width="800" height="600"></canvas>
-		
+		<canvas id="canvas" width="800" height="400"></canvas>
+
 		<script type="text/javascript">
 			var canvas = document.querySelector("#canvas")
 			var cxt = canvas.getContext('2d')
-			
+
 			//移动即是translate,会将整个坐标尺进行移动
-			
+
 			cxt.fillStyle = "hotpink"
 			cxt.fillRect(0,0,100,100)
-			
+
 			cxt.translate(300,0)
 			cxt.fillStyle = "deepskyblue"
 			cxt.fillRect(100,100,300,100)
-			
-			
-			
-			
+
 		</script>
 	</body>
 </html>

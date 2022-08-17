@@ -5,14 +5,14 @@
 		<title></title>
 	</head>
 	<body>
-		<canvas id="canvas" width="800" height="600"></canvas>
+		<canvas id="canvas" width="800" height="550"></canvas>
 
 		<script type="text/javascript">
 			var canvas = document.querySelector("#canvas")
 			var cxt = canvas.getContext('2d')
 
 			function renderClock(){
-				cxt.clearRect(0,0,800,600)
+				cxt.clearRect(0,0,800,550)
 				// 保留最原始的状态
 				cxt.save()
 				// 将坐标移动到画布的中央
